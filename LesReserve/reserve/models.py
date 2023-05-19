@@ -16,22 +16,8 @@ class Ciudades(models.Model):
     class Meta:
         managed = False
         db_table = 'Ciudades'
-
-
-class Clientes(models.Model):
-    nombre = models.CharField(blank=True, null=True)
-    correo = models.CharField(blank=True, null=True)
-    telefono = models.CharField(blank=True, null=True)
-    direccion = models.CharField(blank=True, null=True)
-    fecha_inicio = models.DateField(blank=True, null=True)
-    apellido = models.CharField(blank=True, null=True)
-    ci = models.CharField(blank=True, null=True)
-    id_ciudades = models.ForeignKey('Ciudad', models.DO_NOTHING, db_column='id_ciudades', blank=True, null=True)
-    estado = models.CharField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'Clientes'
+# Unable to inspect table 'Clientes'
+# The error was: list index out of range
 
 
 class Departamentos(models.Model):
@@ -89,7 +75,7 @@ class Personales(models.Model):
 
 
 class Reservas(models.Model):
-    id_clientes = models.ForeignKey(Clientes, models.DO_NOTHING, db_column='id_clientes', blank=True, null=True)
+    id_clientes = models.ForeignKey('Clientes', models.DO_NOTHING, db_column='id_clientes', blank=True, null=True)
     id_habitaciones = models.ForeignKey(Habitaciones, models.DO_NOTHING, db_column='id_habitaciones', blank=True, null=True)
     fecha_entrada = models.DateField(blank=True, null=True)
     fecha_salida = models.DateField(blank=True, null=True)
@@ -111,3 +97,13 @@ class Roles(models.Model):
     class Meta:
         managed = False
         db_table = 'Roles'
+
+
+class Usuarios(models.Model):
+    nombre = models.CharField(blank=True, null=True)
+    clave = models.CharField(blank=True, null=True)
+    id_personales = models.ForeignKey(Personales, models.DO_NOTHING, db_column='id_personales', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'Usuarios'
