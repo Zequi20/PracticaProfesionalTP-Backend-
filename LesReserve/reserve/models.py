@@ -10,19 +10,31 @@ from django.db import models
 
 class Ciudades(models.Model):
     id = models.TextField(primary_key=True)  # This field type is a guess.
-    nombre = models.CharField(blank=True, null=True)
+    nombre = models.CharField(blank=True, null=True, max_length=50)
     id_departamentos = models.ForeignKey('Departamentos', models.DO_NOTHING, db_column='id_departamentos', blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'Ciudades'
-# Unable to inspect table 'Clientes'
-# The error was: list index out of range
 
+class Clientes(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=50)
+    correo = models.CharField(max_length=50)
+    telefono = models.CharField(max_length=20)
+    direccion = models.CharField(max_length=50)
+    fecha_inicio = models.DateField()
+    apellido = models.CharField(max_length=50)
+    ci = models.CharField(max_length=20)
+    id_ciudades = models.ForeignKey('Ciudades', on_delete=models.CASCADE)
+    estado = models.CharField(max_length=12)
+    class Meta:
+        managed = False
+        db_table = 'Clientes'
 
 class Departamentos(models.Model):
     id = models.TextField(primary_key=True)  # This field type is a guess.
-    nombre = models.CharField(blank=True, null=True)
+    nombre = models.CharField(blank=True, null=True, max_length=50)
 
     class Meta:
         managed = False
@@ -34,9 +46,9 @@ class Habitaciones(models.Model):
     tipo = models.TextField(blank=True, null=True)  # This field type is a guess.
     numero = models.SmallIntegerField(blank=True, null=True)
     precio = models.TextField(blank=True, null=True)  # This field type is a guess.
-    descripcion = models.CharField(blank=True, null=True)
+    descripcion = models.CharField(blank=True, null=True, max_length=50)
     capacidad = models.TextField(blank=True, null=True)  # This field type is a guess.
-    estado = models.CharField(blank=True, null=True)
+    estado = models.CharField(blank=True, null=True, max_length=12)
 
     class Meta:
         managed = False
@@ -45,12 +57,12 @@ class Habitaciones(models.Model):
 
 class Hoteles(models.Model):
     id = models.TextField(primary_key=True)  # This field type is a guess.
-    nombre = models.CharField(blank=True, null=True)
-    direccion = models.CharField(blank=True, null=True)
-    telefono = models.CharField(blank=True, null=True)
-    correo = models.CharField(blank=True, null=True)
+    nombre = models.CharField(blank=True, null=True, max_length=50)
+    direccion = models.CharField(blank=True, null=True, max_length=50)
+    telefono = models.CharField(blank=True, null=True, max_length=50)
+    correo = models.CharField(blank=True, null=True, max_length=50)
     id_ciudad = models.ForeignKey(Ciudades, models.DO_NOTHING, db_column='id_ciudad', blank=True, null=True)
-    estado = models.CharField(blank=True, null=True)
+    estado = models.CharField(blank=True, null=True, max_length=12)
 
     class Meta:
         managed = False
@@ -58,16 +70,16 @@ class Hoteles(models.Model):
 
 
 class Personales(models.Model):
-    nombre = models.CharField(blank=True, null=True)
+    nombre = models.CharField(blank=True, null=True, max_length=50)
     fecha_alta = models.DateField(blank=True, null=True)
-    apellido = models.CharField(blank=True, null=True)
-    ci = models.CharField(blank=True, null=True)
-    telefono = models.CharField(blank=True, null=True)
-    correo = models.CharField(blank=True, null=True)
+    apellido = models.CharField(blank=True, null=True, max_length=50)
+    ci = models.CharField(blank=True, null=True, max_length=20)
+    telefono = models.CharField(blank=True, null=True, max_length=50)
+    correo = models.CharField(blank=True, null=True, max_length=50)
     fecha_nacimiento = models.DateField(blank=True, null=True)
     id_ciudades = models.ForeignKey(Ciudades, models.DO_NOTHING, db_column='id_ciudades', blank=True, null=True)
     id_roles = models.ForeignKey('Roles', models.DO_NOTHING, db_column='id_roles', blank=True, null=True)
-    estado = models.CharField(blank=True, null=True)
+    estado = models.CharField(blank=True, null=True, max_length=12)
 
     class Meta:
         managed = False
@@ -81,8 +93,8 @@ class Reservas(models.Model):
     fecha_salida = models.DateField(blank=True, null=True)
     precio = models.TextField(blank=True, null=True)  # This field type is a guess.
     id_personales = models.ForeignKey(Personales, models.DO_NOTHING, db_column='id_personales', blank=True, null=True)
-    observacion = models.CharField(blank=True, null=True)
-    estado = models.CharField(blank=True, null=True)
+    observacion = models.CharField(blank=True, null=True, max_length=50)
+    estado = models.CharField(blank=True, null=True, max_length=12)
 
     class Meta:
         managed = False
@@ -91,8 +103,8 @@ class Reservas(models.Model):
 
 class Roles(models.Model):
     id = models.TextField(primary_key=True)  # This field type is a guess.
-    nombre = models.CharField(blank=True, null=True)
-    descripcion = models.CharField(blank=True, null=True)
+    nombre = models.CharField(blank=True, null=True, max_length=50)
+    descripcion = models.CharField(blank=True, null=True, max_length=50)
 
     class Meta:
         managed = False
@@ -100,8 +112,8 @@ class Roles(models.Model):
 
 
 class Usuarios(models.Model):
-    nombre = models.CharField(blank=True, null=True)
-    clave = models.CharField(blank=True, null=True)
+    nombre = models.CharField(blank=True, null=True, max_length=50)
+    clave = models.CharField(blank=True, null=True, max_length=50)
     id_personales = models.ForeignKey(Personales, models.DO_NOTHING, db_column='id_personales', blank=True, null=True)
 
     class Meta:
