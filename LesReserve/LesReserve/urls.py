@@ -21,6 +21,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.vista_principal,name='vista_principal'),
+    path('home/', views.vista_principal,name='vista_principal'),
+    path('', views.vista_login,name='vista_login'),
    
 ]
