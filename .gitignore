@@ -1,0 +1,6 @@
+# Ignorar archivos binarios generados por Django
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+__pycache__/
