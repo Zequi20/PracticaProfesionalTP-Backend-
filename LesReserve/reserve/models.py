@@ -60,7 +60,7 @@ class Hotel(models.Model):
    
 
 
-class Personal(models.Model):
+class Persona(models.Model):
     nombre = models.CharField(blank=True, null=True, max_length=50)
     fecha_alta = models.DateField(blank=True, null=True)
     apellido = models.CharField(blank=True, null=True, max_length=50)
