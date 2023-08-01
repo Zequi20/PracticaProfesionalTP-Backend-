@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reservas</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background-color: #040b93;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    h1 {
+      margin: 0;
+    }
+    
+    main {
+      padding: 20px;
+    }
+
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+      display: inline-block;
+    }
+    
+    li {
+      display: inline;
+      margin-right: 10px;
+    }
+    
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #4b45eb;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Centrar el botón */
+    form button {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <h1>Les Tours</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="inicio.html">Inicio</a></li>
+      <li><a href="sucursales.html">Sucursales</a></li>
+      <li><a href="reservas.html">Reservas</a></li>
+      <li><a href="recursos.html">Recursos</a></li>
+      <li><a href="config.html">Configuración</a></li>
+    </ul>
+  </nav>
+  
+  <main>
+    <form>
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Teléfono:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="checkin">Fecha de entrada:</label>
+      <input type="date" id="checkin" name="checkin" required>
+
+      <label for="checkout">Fecha de salida:</label>
+      <input type="date" id="checkout" name="checkout" required>
+
+      <label for="guests">Número de huéspedes:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="branch">Sucursal:</label>
+      <select id="branch" name="branch" required>
+        <option value="branch1">Sucursal 1</option>
+        <option value="branch2">Sucursal 2</option>
+        <option value="branch3">Sucursal 3</option>
+        <option value="branch1">Sucursal 4</option>
+        <option value="branch2">Sucursal 5</option>
+        <option value="branch3">Sucursal 6</option>
+      </select>
+
+      <button type="submit">Reservar</button>
+    </form>
+  </main>
+
+  <script>
+    // Código JavaScript existente...
+  </script>
+  
+</body>
+</html>

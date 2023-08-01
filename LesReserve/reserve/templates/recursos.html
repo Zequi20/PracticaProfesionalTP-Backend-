@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recursos</title>
+
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background-color: #040b93;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    h1 {
+      margin: 0;
+    }
+    
+    main {
+      padding: 20px;
+    }
+    
+    .red-text {
+      color: #ff0000;
+    }
+    
+    .blue-text {
+      color: #0000ff;
+    }
+    
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+      display: inline-block;
+    }
+    
+    li {
+      display: inline;
+      margin-right: 10px;
+    }
+    
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  
+    main {
+      padding: 20px;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #4b45eb;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      display: block;
+      margin: 10px auto; /* Añadimos un margen para separar los botones */
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Les Tours</h1>
+  </header>
+  
+  <nav>
+    <ul>
+      <li><a href="inicio.html">Inicio</a></li>
+      <li><a href="sucursales.html">Sucursales</a></li>
+      <li><a href="reservas.html">Reservas</a></li>
+      <li><a href="recursos.html">Recursos</a></li>
+      <li><a href="config.html">Configuración</a></li>
+    </ul>
+  </nav>
+  
+  <main>
+    <!-- Formulario de registro de empleado -->
+    <form>
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="position">Puesto:</label>
+      <input type="text" id="position" name="position" required>
+
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Teléfono:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <button type="submit">Registrar Empleado</button>
+    </form>
+
+    <!-- Botón para ver empleados -->
+    <button onclick="accederBaseDeDatos()">Staff Hotelero</button>
+  </main>
+
+  <script>
+    // Código JavaScript existente...
+
+    // Función para manejar el click del botón "Ver Empleados"
+    function accederBaseDeDatos() {
+      // Aquí redirigimos a la página staffHotelera.html
+      window.location.href = "staffHotelera.html";
+    }
+  </script>
+
+</body>
+</html>
