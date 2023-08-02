@@ -80,7 +80,7 @@ class Reserva(models.Model):
     fecha_inicio = models.DateField(blank=True, null=True)
     fecha_fin = models.DateField(blank=True, null=True)
     estado = models.CharField(blank=True, null=True, max_length=50)
-    obsevciones = models.CharField(blank=True, null=True, max_length=500)
+    observacion = models.CharField(blank=True, null=True, max_length=500)
 
 
 
