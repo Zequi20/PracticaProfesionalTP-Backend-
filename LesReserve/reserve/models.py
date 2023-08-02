@@ -72,5 +72,10 @@ class Persona(models.Model):
     estado = models.CharField(blank=True, null=True, max_length=50)
 
 
+class Reserva(models.Model):
+    
+    id_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, db_column='id_cliente', blank=True, null=True)
+    estado = models.CharField(blank=True, null=True, max_length=50)
+
 
 
