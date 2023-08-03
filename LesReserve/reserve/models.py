@@ -62,8 +62,9 @@ class Hotel(models.Model):
 
 class Personal(models.Model):
     nombre = models.CharField(blank=True, null=True, max_length=50)
-    fecha_alta = models.DateField(blank=True, null=True)
     apellido = models.CharField(blank=True, null=True, max_length=50)
+    fecha_alta = models.DateField(blank=True, null=True)
+    puesto = models.CharField(blank=True, null=True, max_length=50)
     ci = models.CharField(blank=True, null=True, max_length=20)
     telefono = models.CharField(blank=True, null=True, max_length=50)
     correo = models.CharField(blank=True, null=True, max_length=50)
