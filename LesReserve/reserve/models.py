@@ -11,7 +11,11 @@ from django.db import models
 class Ciudad(models.Model):
     nombre = models.CharField(blank=True, null=True, max_length= 50)
     id_departamento = models.ForeignKey('Departamento', on_delete=models.PROTECT, db_column='id_departamento', blank=True, null=True)
-
+    def __str__(self):
+        if self.id_departamento:
+            return f"{self.nombre} - {self.id_departamento.nombre}"
+        else:
+            return self.nombre
     """ class Meta:
         managed = False
         db_table = 'Ciudad' """
@@ -28,6 +32,8 @@ class Cliente(models.Model):
     ci = models.CharField(max_length=20)
     estado = models.CharField(max_length=20)
     direccion = models.CharField(max_length=50)
+    def __str__(self):
+        return f"{self.nombre} - {self.apellido} - {self.id_ciudad.nombre} - {self.correo}"
     
 
 
@@ -35,7 +41,9 @@ class Cliente(models.Model):
 
 class Departamento(models.Model):
     nombre = models.CharField(blank=True, null=True, max_length= 50)
-
+    def __str__(self):
+        return self.nombre
+    
   
 
 class Habitacion(models.Model):
@@ -47,6 +55,9 @@ class Habitacion(models.Model):
     capacidad = models.PositiveIntegerField()  # This field type is a guess.
     estado = models.CharField(blank=True, null=True, max_length=20)
 
+    def __str__(self):
+        return f"{self.numero} - {self.id_hotel.nombre} - {self.tipo} - precio: {self.precio} - {self.descripcion} - {self.capacidad} personas - {self.estado}"
+
 
 
 class Hotel(models.Model):
@@ -56,7 +67,8 @@ class Hotel(models.Model):
     correo = models.CharField(blank=True, null=True, max_length=50)
     id_ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT, db_column='id_ciudad', blank=True, null=True)
     estado = models.CharField(blank=True, null=True, max_length=20)
-
+    def __str__(self):
+        return f"{self.nombre} - {self.direccion} - {self.telefono} - {self.correo} - {self.id_ciudad.nombre} - {self.estado}"
    
 
 
@@ -64,6 +76,7 @@ class Personal(models.Model):
     nombre = models.CharField(blank=True, null=True, max_length=50)
     apellido = models.CharField(blank=True, null=True, max_length=50)
     fecha_alta = models.DateField(blank=True, null=True)
+    id_hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, db_column='id_hotel', blank=True, null=True)
     puesto = models.CharField(blank=True, null=True, max_length=50)
     ci = models.CharField(blank=True, null=True, max_length=20)
     telefono = models.CharField(blank=True, null=True, max_length=50)
@@ -71,6 +84,8 @@ class Personal(models.Model):
     fecha_nacimiento = models.DateField(blank=True, null=True)
     id_ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT, db_column='id_ciudad', blank=True, null=True)
     estado = models.CharField(blank=True, null=True, max_length=50)
+    def __str__(self):
+        return f"{self.ci} - {self.nombre} {self.apellido} - {self.puesto} - {self.telefono} - {self.correo}"
 
 
 class Reserva(models.Model):
@@ -78,10 +93,13 @@ class Reserva(models.Model):
     id_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, db_column='id_cliente', blank=True, null=True)
     id_habitacion = models.ForeignKey(Habitacion, on_delete=models.PROTECT, db_column='id_habitacion', blank=True, null=True)
     id_personal = models.ForeignKey(Personal, on_delete=models.PROTECT, db_column='id_personal', blank=True, null=True)
+    cantidad = models.SmallIntegerField(default=0)
     fecha_inicio = models.DateField(blank=True, null=True)
     fecha_fin = models.DateField(blank=True, null=True)
     estado = models.CharField(blank=True, null=True, max_length=50)
     observacion = models.CharField(blank=True, null=True, max_length=500)
+    def __str__ (self):
+        return f"{self.id_cliente.nombre} - habitacion {self.id_habitacion.numero} - {self.cantidad} personas"
 
 
 
