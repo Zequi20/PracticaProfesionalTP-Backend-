@@ -41,6 +41,7 @@ class ClienteAdmin(admin.ModelAdmin):
 
     ordering = ['-ci',
                 '-nombre']
+    search_fields=('ci','nombre','apellido')
 
 
 class HabitacionAdmin(admin.ModelAdmin):
@@ -61,6 +62,7 @@ class HabitacionAdmin(admin.ModelAdmin):
                     'numero',
                     'precio',
                     'capacidad']
+    search_fields=('numero','capacidad')
 
 class HotelAdmin(admin.ModelAdmin):
     list_display = ['nombre',
@@ -77,6 +79,7 @@ class HotelAdmin(admin.ModelAdmin):
                     'direccion',
                     'id_ciudad',
                     'estado',]
+    search_fields=('nombre',)
 
 class PersonalAdmin(admin.ModelAdmin):
     list_display = ['nombre',
@@ -98,6 +101,7 @@ class PersonalAdmin(admin.ModelAdmin):
                     'puesto',
                     'telefono',
                     ]
+    search_fields=('ci','nombre','apellido')
 
 class ReservaAdmin(admin.ModelAdmin):
     list_display = ['id_habitacion',
@@ -122,6 +126,7 @@ class ReservaAdmin(admin.ModelAdmin):
                     'fecha_fin',
                     'observacion'
                     ]
+    search_fields=('fecha_inicio',)
 
 admin.site.register(Ciudad, CiudadAdmin)
 admin.site.register(Departamento, DepartamentoAdmin)
