@@ -68,7 +68,7 @@ class Hotel(models.Model):
     id_ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT, db_column='id_ciudad', blank=True, null=True)
     estado = models.CharField(blank=True, null=True, max_length=20)
     def __str__(self):
-        return f"{self.nombre} - {self.direccion} - {self.telefono} - {self.correo} - {self.id_ciudad.nombre} - {self.estado}"
+        return f"{self.nombre}"
    
 
 
