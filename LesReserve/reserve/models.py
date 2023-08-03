@@ -60,7 +60,7 @@ class Hotel(models.Model):
    
 
 
-class Persona(models.Model):
+class Personal(models.Model):
     nombre = models.CharField(blank=True, null=True, max_length=50)
     fecha_alta = models.DateField(blank=True, null=True)
     apellido = models.CharField(blank=True, null=True, max_length=50)
@@ -76,7 +76,7 @@ class Reserva(models.Model):
     
     id_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, db_column='id_cliente', blank=True, null=True)
     id_habitacion = models.ForeignKey(Habitacion, on_delete=models.PROTECT, db_column='id_habitacion', blank=True, null=True)
-    id_persona = models.ForeignKey(Persona, on_delete=models.PROTECT, db_column='id_persona', blank=True, null=True)
+    id_personal = models.ForeignKey(Personal, on_delete=models.PROTECT, db_column='id_personal', blank=True, null=True)
     fecha_inicio = models.DateField(blank=True, null=True)
     fecha_fin = models.DateField(blank=True, null=True)
     estado = models.CharField(blank=True, null=True, max_length=50)

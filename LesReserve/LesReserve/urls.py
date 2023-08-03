@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.vista_principal,name='vista_principal'),
     path('', views.vista_login,name='vista_login'),
+    path('home/', views.vista_principal,name='vista_reserva'),
    
 ]
