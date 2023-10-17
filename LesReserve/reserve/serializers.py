@@ -10,7 +10,7 @@ class DepartamentoSerializer(serializers.ModelSerializer):
 class CiudadSerializer(serializers.ModelSerializer):
     class Meta:
         model=Ciudad
-        fields=('ciudadId','id_departamento','nombre')
+        fields=('ciudadId','departamentoId','nombre')
 
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
