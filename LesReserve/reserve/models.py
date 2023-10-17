@@ -10,13 +10,14 @@ from django.db import models
 
 class Departamento(models.Model):
     departamentoId = models.AutoField(primary_key=True)
-    nombre = models.CharField(blank=True, null=True, max_length= 50)
+    nombre = models.CharField(max_length= 50)
+
 
 
 class Ciudad(models.Model):
     ciudadId = models.AutoField(primary_key=True)
     nombre = models.CharField(blank=True, null=True, max_length= 50)
-    id_departamento = models.ForeignKey('Departamento', on_delete=models.PROTECT, db_column='departamentoId', blank=True, null=True)
+    id_departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT, db_column='departamentoId', blank=True, null=True)
 
 
 class Cliente(models.Model):
@@ -46,7 +47,7 @@ class Hotel(models.Model):
 
 class Habitacion(models.Model):
     habitacionId = models.AutoField(primary_key=True)
-    id_hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, db_column='id_hotel', blank=True, null=True)
+    id_hotel = models.ForeignKey(Hotel, on_delete=models.PROTECT, db_column='id_hotel', blank=True, null=True)
     tipo = models.CharField(blank=True, null=True, max_length= 50)  # This field type is a guess.
     numero = models.SmallIntegerField(blank=True, null=True)
     precio = models.PositiveBigIntegerField() # This field type is a guess.
@@ -59,7 +60,7 @@ class Habitacion(models.Model):
 
 class Personal(models.Model):
     personalId = models.AutoField(primary_key=True)
-    personalId = models.AutoField(primary_key=True)
+   
     nombre = models.CharField(blank=True, null=True, max_length=50)
     apellido = models.CharField(blank=True, null=True, max_length=50)
     fecha_alta = models.DateField(blank=True, null=True)
@@ -95,7 +96,7 @@ class Reserva(models.Model):
 
 class Resena(models.Model):
     resenaId = models.AutoField(primary_key=True)
-    id_hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, db_column='id_hotel', blank=True, null=True)
+    id_hotel = models.ForeignKey(Hotel, on_delete=models.PROTECT, db_column='id_hotel', blank=True, null=True)
     id_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, db_column='id_cliente', blank=True, null=True)
     comentario = models.CharField(blank=True, null=True, max_length=500)
 
