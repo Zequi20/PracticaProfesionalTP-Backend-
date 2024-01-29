@@ -1,78 +1,81 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+
+class Departamento(models.Model):
+    departamentoId = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=50)
+    class Meta:
+        managed = False
+        db_table = 'Departamento'
+    
+
 
 
 class Ciudad(models.Model):
-    nombre = models.CharField(blank=True, null=True, max_length= 50)
+    ciudadId = models.AutoField(primary_key=True)
+    nombre = models.CharField(blank=True, null=True, max_length=50)
     id_departamento = models.ForeignKey('Departamento', on_delete=models.PROTECT, db_column='id_departamento', blank=True, null=True)
+
     def __str__(self):
         if self.id_departamento:
             return f"{self.nombre} - {self.id_departamento.nombre}"
         else:
             return self.nombre
-    """ class Meta:
+
+    class Meta:
         managed = False
-        db_table = 'Ciudad' """
-# Unable to inspect table 'Cliente'
-# The error was: list index out of range
+        db_table = 'Ciudad'
 
 class Cliente(models.Model):
-    nombre = models.CharField(blank=True, null=True, max_length= 50)
-    apellido = models.CharField(blank=True, null=True, max_length= 50)
-    id_ciudad = models.ForeignKey('Ciudad', db_column='id_ciudad', on_delete=models.PROTECT, blank=True, null=True)
+    clienteId = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    id_ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT, blank=True, null=True)
     correo = models.CharField(max_length=50)
     telefono = models.CharField(max_length=20)
     fecha_inicio = models.DateField()
     ci = models.CharField(max_length=20)
     estado = models.CharField(max_length=20)
     direccion = models.CharField(max_length=50)
-    def __str__(self):
-        return f"{self.nombre} - {self.apellido} - {self.id_ciudad.nombre} - {self.correo}"
-    
+    foto = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'Cliente'
 
 
 
-
-class Departamento(models.Model):
-    nombre = models.CharField(blank=True, null=True, max_length= 50)
-    def __str__(self):
-        return self.nombre
-    
-  
-
-class Habitacion(models.Model):
-    id_hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, db_column='id_hotel', blank=True, null=True)
-    tipo = models.CharField(blank=True, null=True, max_length= 50)  # This field type is a guess.
-    numero = models.SmallIntegerField(blank=True, null=True)
-    precio = models.PositiveBigIntegerField() # This field type is a guess.
-    descripcion = models.CharField(blank=True, null=True, max_length= 50)
-    capacidad = models.PositiveIntegerField()  # This field type is a guess.
-    estado = models.CharField(blank=True, null=True, max_length=20)
-
-    def __str__(self):
-        return f"{self.numero} - {self.id_hotel.nombre} - {self.tipo} - precio: {self.precio} - {self.descripcion} - {self.capacidad} personas - {self.estado}"
 
 
 
 class Hotel(models.Model):
+    hotelId = models.AutoField(primary_key=True)
     nombre = models.CharField(blank=True, null=True, max_length=50)
     direccion = models.CharField(blank=True, null=True, max_length=50)
     telefono = models.CharField(blank=True, null=True, max_length=50)
     correo = models.CharField(blank=True, null=True, max_length=50)
-    id_ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT, db_column='id_ciudad', blank=True, null=True)
+    id_ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT, db_column='ciudadId', blank=True, null=True)
     estado = models.CharField(blank=True, null=True, max_length=20)
-    def __str__(self):
-        return f"{self.nombre}"
-   
 
+    class Meta:
+        managed = False
+        db_table = 'Hotel'
+
+class Habitacion(models.Model):
+    habitacionId = models.AutoField(primary_key=True)
+    id_hotel = models.ForeignKey(Hotel, on_delete=models.PROTECT, db_column='id_hotel', blank=True, null=True)
+    tipo = models.CharField(blank=True, null=True, max_length=50)
+    numero = models.SmallIntegerField(blank=True, null=True)
+    precio = models.PositiveBigIntegerField()
+    descripcion = models.CharField(blank=True, null=True, max_length=500)
+    foto = models.CharField(blank=True, null=True, max_length=500)
+    capacidad = models.PositiveIntegerField()
+    estado = models.CharField(blank=True, null=True, max_length=20)
+    class Meta:
+        managed = False
+        db_table = 'Habitacion'
 
 class Personal(models.Model):
+    personalId = models.AutoField(primary_key=True)
     nombre = models.CharField(blank=True, null=True, max_length=50)
     apellido = models.CharField(blank=True, null=True, max_length=50)
     fecha_alta = models.DateField(blank=True, null=True)
@@ -82,24 +85,45 @@ class Personal(models.Model):
     telefono = models.CharField(blank=True, null=True, max_length=50)
     correo = models.CharField(blank=True, null=True, max_length=50)
     fecha_nacimiento = models.DateField(blank=True, null=True)
-    id_ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT, db_column='id_ciudad', blank=True, null=True)
+    id_ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT, db_column='ciudadId', blank=True, null=True)
     estado = models.CharField(blank=True, null=True, max_length=50)
-    def __str__(self):
-        return f"{self.ci} - {self.nombre} {self.apellido} - {self.puesto} - {self.telefono} - {self.correo}"
+    foto = models.CharField(blank=True, null=True, max_length=500)
 
+    class Meta:
+        managed = False
+        db_table = 'Personal'
+
+class Servicio(models.Model):
+    servicioId = models.AutoField(primary_key=True)
+    precio = models.PositiveBigIntegerField()
+    servicio_tipo = models.CharField(blank=True, null=True, max_length=500)
+    detalle = models.CharField(blank=True, null=True, max_length=500)
+
+    class Meta:
+        managed = False
+        db_table = 'Servicio'
 
 class Reserva(models.Model):
-    
-    id_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, db_column='id_cliente', blank=True, null=True)
-    id_habitacion = models.ForeignKey(Habitacion, on_delete=models.PROTECT, db_column='id_habitacion', blank=True, null=True)
-    id_personal = models.ForeignKey(Personal, on_delete=models.PROTECT, db_column='id_personal', blank=True, null=True)
+    reservaId = models.AutoField(primary_key=True)
+    id_cliente = models.ForeignKey('Cliente', on_delete=models.PROTECT, db_column='id_cliente', blank=True, null=True)
+    id_servicio = models.ForeignKey(Servicio, on_delete=models.PROTECT, db_column='id_servicio', blank=True, null=True)
+    id_habitacion = models.ForeignKey('Habitacion', on_delete=models.PROTECT, db_column='id_habitacion', blank=True, null=True)
+    id_personal = models.ForeignKey('Personal', on_delete=models.PROTECT, db_column='id_personal', blank=True, null=True)
     cantidad = models.SmallIntegerField(default=0)
     fecha_inicio = models.DateField(blank=True, null=True)
     fecha_fin = models.DateField(blank=True, null=True)
     estado = models.CharField(blank=True, null=True, max_length=50)
     observacion = models.CharField(blank=True, null=True, max_length=500)
-    def __str__ (self):
-        return f"{self.id_cliente.nombre} - habitacion {self.id_habitacion.numero} - {self.cantidad} personas"
 
+    class Meta:
+        managed = False
+        db_table = 'Reserva'
 
-
+class Resena(models.Model):
+    resenaId = models.AutoField(primary_key=True)
+    id_hotel = models.ForeignKey(Hotel, on_delete=models.PROTECT, blank=True, null=True)
+    id_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, blank=True, null=True)
+    comentario = models.CharField(max_length=500, blank=True, null=True)
+    class Meta:
+        managed = False
+        db_table = 'Resena'

@@ -22,10 +22,7 @@ from . import views
 urlpatterns = [
     path('api/elementos/', views.obtener_lista_elementos, name='obtener_lista_elementos'),
     path('admin/', admin.site.urls),
-    path('home/', views.vista_principal,name='vista_principal'),
-    path('', admin.site.urls),
-    path('home/', views.vista_principal,name='vista_reserva'),
-    
-   
+    path('home/', views.vista_principal, name='vista_principal'),
+    path('vista-reserva/', views.vista_principal, name='vista_reserva'),  # Cambiado el nombre de la ruta
 ]
 
