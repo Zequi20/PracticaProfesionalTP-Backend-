@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from reserve.models import Departamento, Personal, Ciudad, Cliente, Hotel, Habitacion, Servicio, Reserva, Resena
+from reserve.models import Departamento,  Ciudad
 
 
 class DepartamentoSerializer(serializers.ModelSerializer):
