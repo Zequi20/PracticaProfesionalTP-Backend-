@@ -31,7 +31,7 @@ class Cliente(models.Model):
     fecha_inicio = models.DateField()
     ci = models.CharField(max_length=20)
     estado = models.CharField(max_length=20)
-    direccion = models.CharField(max_length=50)
+    direccion = models.CharField(max_length=100)
     def __str__(self):
         return f"{self.nombre} - {self.apellido} - {self.id_ciudad.nombre} - {self.correo}"
     
@@ -61,8 +61,8 @@ class Habitacion(models.Model):
 
 
 class Hotel(models.Model):
-    nombre = models.CharField(blank=True, null=True, max_length=50)
-    direccion = models.CharField(blank=True, null=True, max_length=50)
+    nombre = models.CharField(blank=True, null=True, max_length=100)
+    direccion = models.CharField(blank=True, null=True, max_length=100)
     telefono = models.CharField(blank=True, null=True, max_length=50)
     correo = models.CharField(blank=True, null=True, max_length=50)
     id_ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT, db_column='id_ciudad', blank=True, null=True)
