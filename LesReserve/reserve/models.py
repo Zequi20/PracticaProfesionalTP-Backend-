@@ -1,18 +1,16 @@
 from django.db import models
 
 class Departamento(models.Model):
-    departamentoId = models.AutoField(primary_key=True)
+    departamento_id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
+
     class Meta:
         managed = False
         db_table = 'departamento'
-    
-
-
-
+"""
 class Ciudad(models.Model):
-    ciudadId = models.AutoField(primary_key=True)
-    nombre = models.CharField(blank=True, null=True, max_length=50)
+    ciudad_id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=50)
     id_departamento = models.ForeignKey('Departamento', on_delete=models.PROTECT, db_column='id_departamento', blank=True, null=True)
 
     def __str__(self):
@@ -127,3 +125,5 @@ class Resena(models.Model):
     class Meta:
         managed = False
         db_table = 'Resena'
+
+"""

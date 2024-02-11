@@ -1,17 +1,17 @@
 from django.contrib import admin
-from .models import Cliente
-from .models import Ciudad
+#from .models import Cliente
+#from .models import Ciudad
 from .models import Departamento
-from .models import Habitacion
-from .models import Hotel
-from .models import Personal
-from .models import Reserva
+#from .models import Habitacion
+#from .models import Hotel
+#from .models import Personal
+#from .models import Reserva
 
 
-class CiudadAdmin(admin.ModelAdmin):
+"""class CiudadAdmin(admin.ModelAdmin):
     list_display = ['nombre', 'id_departamento']
     list_filter = ['nombre']
-    ordering = ['-nombre']
+    ordering = ['-nombre']"""
 
 
 class DepartamentoAdmin(admin.ModelAdmin):
@@ -25,7 +25,7 @@ class DepartamentoAdmin(admin.ModelAdmin):
     list_filter = ['nombre']
     ordering = ['-nombre']
 
-
+"""
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ['ci',
                     'nombre',
@@ -136,3 +136,4 @@ admin.site.register(Hotel, HotelAdmin)
 admin.site.register(Personal, PersonalAdmin)
 admin.site.register(Reserva, ReservaAdmin)
 # Register your models here.
+"""

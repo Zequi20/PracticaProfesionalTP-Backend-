@@ -1,10 +1,8 @@
 from django.urls import path
-
 from reserve import views
 
 urlpatterns = [
-    path('departmento/', views.departamentoApi, name='departamento'),
-    path('departmento/<int:id>/', views.departamentoApi, name='departamento_api_detail'),
-
-    path('departamento/savefile/', views.SaveFile, name='save_file'),
+    path('departamento/', views.departamento_api, name='departamento'),
+    path('departamento/<int:id>/', views.departamento_api, name='departamento_api_detail'),
+    path('departamento/savefile/', views.save_file, name='save_file'),
 ]
