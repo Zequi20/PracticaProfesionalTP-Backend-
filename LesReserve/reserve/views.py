@@ -30,6 +30,15 @@ class ClienteView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, pk):
+        try:
+            data = Cliente.objects.get(pk=pk)
+        except Cliente.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
 class CiudadView(APIView):
     def get(self, request):
         queryset = Ciudad.objects.all()
@@ -42,6 +51,15 @@ class CiudadView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, pk):
+        try:
+            data = Ciudad.objects.get(pk=pk)
+        except Ciudad.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
 class DepartamentoView(APIView):
     def get(self, request):
@@ -56,6 +74,15 @@ class DepartamentoView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+    def delete(self, request, pk):
+        try:
+            data = Departamento.objects.get(pk=pk)
+        except Departamento.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
 class HabitacionView(APIView):
     def get(self, request):
         queryset = Habitacion.objects.all()
@@ -68,6 +95,15 @@ class HabitacionView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUE)
+    
+    def delete(self, request, pk):
+        try:
+            data = Habitacion.objects.get(pk=pk)
+        except Habitacion.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
 class HotelView(APIView):
     def get(self, request):
@@ -82,6 +118,15 @@ class HotelView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUE)
     
+    def delete(self, request, pk):
+        try:
+            data = Hotel.objects.get(pk=pk)
+        except Hotel.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
 class PersonalView(APIView):
     def get(self, request):
         queryset = Personal.objects.all()
@@ -94,6 +139,15 @@ class PersonalView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUE)
+    
+    def delete(self, request, pk):
+        try:
+            data = Personal.objects.get(pk=pk)
+        except Personal.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ReservaView(APIView):
     def get(self, request):
@@ -107,3 +161,12 @@ class ReservaView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUE)
+    
+    def delete(self, request, pk):
+        try:
+            data = Reserva.objects.get(pk=pk)
+        except Reserva.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
