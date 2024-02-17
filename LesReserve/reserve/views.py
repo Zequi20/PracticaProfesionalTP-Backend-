@@ -170,3 +170,17 @@ class ReservaView(APIView):
         
         data.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class LoginView(APIView):
+    def post(self, request):
+        usuario = request.data.get('usuario')
+        clave = request.data.get('clave')
+        try:
+            user = Personal.objects.get(username=usuario)
+        except Personal.DoesNotExist:
+            return Response(False)
+
+        if user.check_password(clave):
+            return Response(True)
+        else:
+            return Response(False)
