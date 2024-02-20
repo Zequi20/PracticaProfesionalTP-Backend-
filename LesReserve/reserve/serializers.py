@@ -7,6 +7,9 @@ from .models import Hotel
 from .models import Personal
 from .models import Reserva
 
+from .models import Servicio
+from .models import Resena
+
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
@@ -40,4 +43,14 @@ class PersonalSerializer(serializers.ModelSerializer):
 class ReservaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reserva
+        fields = '__all__' 
+
+class ServicioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Servicio
+        fields = '__all__'
+
+class ResenaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Resena
         fields = '__all__' 
