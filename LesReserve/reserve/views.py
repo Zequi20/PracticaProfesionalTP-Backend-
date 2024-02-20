@@ -8,6 +8,12 @@ from .models import Habitacion
 from .models import Hotel
 from .models import Personal
 from .models import Reserva
+
+from .models import Servicio
+from .models import Resena
+
+
+
 from .serializers import ClienteSerializer
 from .serializers import CiudadSerializer
 from .serializers import DepartamentoSerializer
@@ -15,6 +21,11 @@ from .serializers import HabitacionSerializer
 from .serializers import HotelSerializer
 from .serializers import PersonalSerializer
 from .serializers import ReservaSerializer
+
+from .serializers import ServicioSerializer
+from .serializers import ResenaSerializer
+
+
 
 
 class ClienteView(APIView):
@@ -170,6 +181,60 @@ class ReservaView(APIView):
         
         data.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
+
+
+class ServicioView(APIView):
+    def get(self, request):
+        queryset = Servicio.objects.all()
+        serializer = ServicioSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = ServicioSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUE)
+    
+    def delete(self, request, pk):
+        try:
+            data = Servicio.objects.get(pk=pk)
+        except Servicio.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
+class ResenaView(APIView):
+    def get(self, request):
+        queryset = Resena.objects.all()
+        serializer = ResenaSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = ResenaSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUE)
+    
+    def delete(self, request, pk):
+        try:
+            data = Resena.objects.get(pk=pk)
+        except Resena.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
+    
+
+
+    
     
 class LoginView(APIView):
     def post(self, request):
