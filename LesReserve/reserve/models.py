@@ -54,6 +54,7 @@ class Habitacion(models.Model):
     descripcion = models.CharField(blank=True, null=True, max_length= 50)
     capacidad = models.PositiveIntegerField()  # This field type is a guess.
     estado = models.CharField(blank=True, null=True, max_length=20)
+    foto = models.CharField(blank=True, null=True, max_length=500)
 
     def __str__(self):
         return f"{self.numero} - {self.id_hotel.nombre} - {self.tipo} - precio: {self.precio} - {self.descripcion} - {self.capacidad} personas - {self.estado}"
@@ -100,6 +101,29 @@ class Reserva(models.Model):
     observacion = models.CharField(blank=True, null=True, max_length=500)
     def __str__ (self):
         return f"{self.id_cliente.nombre} - habitacion {self.id_habitacion.numero} - {self.cantidad} personas"
+    
+
+class Servicio(models.Model):
+    servicioId = models.AutoField(primary_key=True)
+    precio = models.PositiveBigIntegerField()
+    servicio_tipo = models.CharField(blank=True, null=True, max_length=500)
+    detalle = models.CharField(blank=True, null=True, max_length=500)
+
+    def __str__(self):
+        return f"{self.servicioId} - {self.precio} - {self.servicio_tipo} - {self.detalle} "
+
+
+
+
+class Resena(models.Model):
+    resenaId = models.AutoField(primary_key=True)
+    id_hotel = models.ForeignKey(Hotel, on_delete=models.PROTECT, blank=True, null=True)
+    id_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, blank=True, null=True)
+    comentario = models.CharField(max_length=500, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.resenaId} - {self.id_hotel} - {self.id_cliente} - {self.comentario} "
+
 
 
 
