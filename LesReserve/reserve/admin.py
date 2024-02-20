@@ -7,6 +7,8 @@ from .models import Hotel
 from .models import Personal
 from .models import Reserva
 
+from .models import Servicio
+from .models import Resena
 
 class CiudadAdmin(admin.ModelAdmin):
     list_display = ['nombre', 'id_departamento']
@@ -20,10 +22,45 @@ class DepartamentoAdmin(admin.ModelAdmin):
     ordering = ['-nombre']
 
 
-class DepartamentoAdmin(admin.ModelAdmin):
-    list_display = ['nombre']
-    list_filter = ['nombre']
-    ordering = ['-nombre']
+class ServicioAdmin(admin.ModelAdmin):
+    list_display = [
+                    'precio',
+                    'servicio_tipo',
+                    'detalle'
+
+                    ]
+    
+    list_filter = ['precio',
+                    'servicio_tipo'
+                    ]
+
+    ordering = ['servicioId',
+                     'precio',
+                    'servicio_tipo',
+                    'detalle']
+    
+    search_fields=('servicio_tipo','precio')
+
+class ResenaAdmin(admin.ModelAdmin):
+    list_display = [
+                    'id_hotel',
+                    'id_cliente',
+                    'comentario'
+                    ]
+    
+    list_filter = [
+                    'id_hotel',
+                    'id_cliente',
+                    'comentario'
+                    ]
+
+    ordering = [    'resenaId',
+                    'id_hotel',
+                    'id_cliente',
+                    'comentario'
+                    ]
+
+
 
 
 class ClienteAdmin(admin.ModelAdmin):
@@ -135,4 +172,10 @@ admin.site.register(Habitacion, HabitacionAdmin)
 admin.site.register(Hotel, HotelAdmin)
 admin.site.register(Personal, PersonalAdmin)
 admin.site.register(Reserva, ReservaAdmin)
+
+admin.site.register(Servicio, ServicioAdmin)
+admin.site.register(Resena, ResenaAdmin)
+
+
+
 # Register your models here.
