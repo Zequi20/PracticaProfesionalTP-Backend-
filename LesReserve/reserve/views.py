@@ -240,12 +240,8 @@ class LoginView(APIView):
     def post(self, request):
         usuario = request.data.get('usuario')
         clave = request.data.get('clave')
-        try:
-            user = Personal.objects.get(username=usuario)
-        except Personal.DoesNotExist:
-            return Response(False)
-
-        if user.check_password(clave):
-            return Response(True)
-        else:
-            return Response(False)
+        user = Personal.objects.get(nombre=usuario)
+        print(user)
+        if user.clave == clave:
+                return Response(True)
+        return Response(False)
