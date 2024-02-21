@@ -75,6 +75,7 @@ class Hotel(models.Model):
 
 class Personal(models.Model):
     nombre = models.CharField(blank=True, null=True, max_length=50)
+    clave = models.CharField(blank=True, null=True, max_length=50)
     apellido = models.CharField(blank=True, null=True, max_length=50)
     fecha_alta = models.DateField(blank=True, null=True)
     id_hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, db_column='id_hotel', blank=True, null=True)
