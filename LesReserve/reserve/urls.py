@@ -11,6 +11,5 @@ urlpatterns = [
 
     path('servicios', ServicioView.as_view(), name='api-servicios'),
     path('resenas', ResenaView.as_view(), name='api-resena'),
-
     path('login', LoginView.as_view(), name='api-login'),
 ]

@@ -231,17 +231,20 @@ class ResenaView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 
-    
-
-
-    
-    
 class LoginView(APIView):
     def post(self, request):
+        print('login view')
+        print(request.data)
         usuario = request.data.get('usuario')
         clave = request.data.get('clave')
-        user = Personal.objects.get(nombre=usuario)
-        print(user)
+        
+        try:
+            user = Personal.objects.get(nombre=usuario)
+        except Personal.DoesNotExist:
+            return Response(False)  # Usuario no encontrado
+        
         if user.clave == clave:
-                return Response(True)
-        return Response(False)
+            return Response(True)  # Autenticación exitosa
+        else:
+            return Response(False)  # Clave incorrecta
+
