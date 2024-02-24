@@ -124,6 +124,14 @@ class ReservaAdmin(admin.ModelAdmin):
                     ]
     search_fields=('fecha_inicio',)
 
+class ResenaAdmin(admin.ModelAdmin):
+    list_display = [ 'id_hotel', 'id_cliente', 'comentario' ]
+    list_filter = ['id_hotel']
+
+class ServicioAdmin(admin.ModelAdmin):
+    list_display = [ 'precio', 'tipo', 'detalle' ]
+    list_filter = ['precio']
+
 admin.site.register(Ciudad, CiudadAdmin)
 admin.site.register(Departamento, DepartamentoAdmin)
 admin.site.register(Cliente, ClienteAdmin)
@@ -131,6 +139,8 @@ admin.site.register(Habitacion, HabitacionAdmin)
 admin.site.register(Hotel, HotelAdmin)
 admin.site.register(Personal, PersonalAdmin)
 admin.site.register(Reserva, ReservaAdmin)
+admin.site.register(Resena, ResenaAdmin)
+admin.site.register(Servicio, ServicioAdmin)
 
 
 

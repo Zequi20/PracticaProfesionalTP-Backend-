@@ -108,7 +108,7 @@ class Reserva(models.Model):
 class Servicio(models.Model):
     
     precio = models.PositiveBigIntegerField()
-    servicio_tipo = models.CharField(blank=True, null=True, max_length=500)
+    tipo = models.CharField(blank=True, null=True, max_length=500)
     detalle = models.CharField(blank=True, null=True, max_length=500)
 
     def __str__(self):
