@@ -167,11 +167,10 @@ class ReservaView(APIView):
         return Response(serializer.data)
     
     def post(self, request):
-        serializer = ReservaSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUE)
+        id_cliente = request.data.get('id_cliente')  # Obtener el ID del cliente del cuerpo de la solicitud
+        reservas = Reserva.objects.filter(id_cliente=id_cliente)  # Filtrar las reservas por ID de cliente
+        serializer = ReservaSerializer(reservas, many=True)  # Serializar las reservas encontradas
+        return Response(serializer.data)  # Retornar las reservas encontradas
     
     def delete(self, request, pk):
         try:

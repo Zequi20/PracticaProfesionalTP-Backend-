@@ -46,6 +46,8 @@ class PersonalSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ReservaSerializer(serializers.ModelSerializer):
+    id_cliente= ClienteSerializer()
+    id_habitacion = HabitacionSerializer()
     class Meta:
         model = Reserva
         fields = '__all__' 
