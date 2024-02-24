@@ -172,6 +172,13 @@ class ReservaView(APIView):
         serializer = ReservaSerializer(reservas, many=True)  # Serializar las reservas encontradas
         return Response(serializer.data)  # Retornar las reservas encontradas
     
+    def create(self, request):
+        serializer = ReservaSerializer(data=request.data)  # Crear un serializador con los datos de la solicitud
+        if serializer.is_valid():  # Verificar si los datos son válidos
+            serializer.save()  # Guardar la reserva en la base de datos
+            return Response(serializer.data, status=status.HTTP_201_CREATED)  # Retornar los datos de la reserva creada
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  # Retornar errores si los datos no son válidos
+
     def delete(self, request, pk):
         try:
             data = Reserva.objects.get(pk=pk)

@@ -95,7 +95,7 @@ class Reserva(models.Model):
     
     id_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, db_column='id_cliente', blank=True, null=True)
     id_habitacion = models.ForeignKey(Habitacion, on_delete=models.PROTECT, db_column='id_habitacion', blank=True, null=True)
-    id_personal = models.ForeignKey(Personal, on_delete=models.PROTECT, db_column='id_personal', blank=True, null=True)
+    id_personal = models.ForeignKey(Personal, on_delete=models.SET_NULL, db_column='id_personal', blank=True, null=True)
     cantidad = models.SmallIntegerField(default=0)
     fecha_inicio = models.DateField(blank=True, null=True)
     fecha_fin = models.DateField(blank=True, null=True)
