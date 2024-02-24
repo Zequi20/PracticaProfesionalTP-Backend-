@@ -25,6 +25,7 @@ class Ciudad(models.Model):
 class Cliente(models.Model):
     nombre = models.CharField(blank=True, null=True, max_length= 50)
     apellido = models.CharField(blank=True, null=True, max_length= 50)
+    clave = models.CharField(blank=True, null=True, max_length= 50)
     id_ciudad = models.ForeignKey('Ciudad', db_column='id_ciudad', on_delete=models.PROTECT, blank=True, null=True)
     correo = models.CharField(max_length=50)
     telefono = models.CharField(max_length=20)
@@ -105,7 +106,7 @@ class Reserva(models.Model):
     
 
 class Servicio(models.Model):
-    servicioId = models.AutoField(primary_key=True)
+    
     precio = models.PositiveBigIntegerField()
     servicio_tipo = models.CharField(blank=True, null=True, max_length=500)
     detalle = models.CharField(blank=True, null=True, max_length=500)
@@ -117,7 +118,6 @@ class Servicio(models.Model):
 
 
 class Resena(models.Model):
-    resenaId = models.AutoField(primary_key=True)
     id_hotel = models.ForeignKey(Hotel, on_delete=models.PROTECT, blank=True, null=True)
     id_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, blank=True, null=True)
     comentario = models.CharField(max_length=500, blank=True, null=True)

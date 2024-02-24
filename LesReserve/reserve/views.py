@@ -233,18 +233,17 @@ class ResenaView(APIView):
 
 class LoginView(APIView):
     def post(self, request):
-        print('login view')
-        print(request.data)
         usuario = request.data.get('usuario')
         clave = request.data.get('clave')
         
         try:
-            user = Personal.objects.get(nombre=usuario)
-        except Personal.DoesNotExist:
-            return Response(False)  # Usuario no encontrado
+            cliente = Cliente.objects.get(nombre=usuario)
+        except Cliente.DoesNotExist:
+            return Response({'success': False, 'message': 'Usuario no encontrado'})
         
-        if user.clave == clave:
-            return Response(True)  # Autenticación exitosa
+        if cliente.clave == clave:
+            serializer = ClienteSerializer(cliente)
+            return Response({'success': True, 'cliente': serializer.data})
         else:
-            return Response(False)  # Clave incorrecta
+            return Response({'success': False, 'message': 'Clave incorrecta'})
 
