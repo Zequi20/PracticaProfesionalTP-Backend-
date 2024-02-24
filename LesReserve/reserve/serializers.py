@@ -20,20 +20,25 @@ class CiudadSerializer(serializers.ModelSerializer):
         model = Ciudad
         fields = '__all__' 
 
+class HotelSerializer(serializers.ModelSerializer):
+    id_ciudad = CiudadSerializer()
+    class Meta:
+        model = Hotel
+        fields = '__all__'
+
 class DepartamentoSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Departamento
         fields = '__all__' 
 
 class HabitacionSerializer(serializers.ModelSerializer):
+    id_hotel = HotelSerializer()
     class Meta:
         model = Habitacion
         fields = '__all__' 
 
-class HotelSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Hotel
-        fields = '__all__' 
+
 
 class PersonalSerializer(serializers.ModelSerializer):
     class Meta:

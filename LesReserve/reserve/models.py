@@ -112,7 +112,7 @@ class Servicio(models.Model):
     detalle = models.CharField(blank=True, null=True, max_length=500)
 
     def __str__(self):
-        return f"{self.servicioId} - {self.precio} - {self.servicio_tipo} - {self.detalle} "
+        return f"{self.precio} - {self.detalle} "
 
 
 
@@ -123,7 +123,7 @@ class Resena(models.Model):
     comentario = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.resenaId} - {self.id_hotel} - {self.id_cliente} - {self.comentario} "
+        return f"{self.id_hotel} - {self.id_cliente} - {self.comentario} "
 
 
 
